@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import './index.css'; // Import the CSS file
+import './index.css';
 
 function App() {
   const [businessName, setBusinessName] = useState('');
@@ -20,13 +20,13 @@ function App() {
 
     try {
       const response = await axios.post('http://localhost:5000/scrape', { businessName });
-
-      if (response.data && response.data.reviews) {
+      
+      if (response.data.reviews) {
         setReviews(response.data.reviews);
       } else if (response.data.error) {
         setError(response.data.error);
       } else {
-        setError('No reviews found or error in response');
+        setError('Unexpected response from server');
       }
     } catch (err) {
       setError('Error fetching data. Please try again.');
