@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
-import axios from 'axios';
-import './index.css';
+import React, { useState } from "react";
+import axios from "axios";
+import "./index.css";
 
 function App() {
-  const [businessName, setBusinessName] = useState('');
+  const [businessName, setBusinessName] = useState("");
   const [reviews, setReviews] = useState([]);
-  const [error, setError] = useState('');
+  const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
   const handleInputChange = (e) => {
@@ -14,23 +14,25 @@ function App() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError('');
+    setError("");
     setReviews([]);
     setLoading(true);
 
     try {
-      const response = await axios.post('http://localhost:5000/scrape', { businessName });
-      
+      const response = await axios.post("http://localhost:5000/scrape", {
+        businessName,
+      });
+
       if (response.data.reviews) {
         setReviews(response.data.reviews);
       } else if (response.data.error) {
         setError(response.data.error);
       } else {
-        setError('Unexpected response from server');
+        setError("Unexpected response from server");
       }
     } catch (err) {
-      setError('Error fetching data. Please try again.');
-      console.error('Error fetching data:', err);
+      setError("Error fetching data. Please try again.");
+      console.error("Error fetching data:", err);
     }
 
     setLoading(false);
@@ -52,7 +54,7 @@ function App() {
           />
         </label>
         <button type="submit" className="submit-button">
-          {loading ? 'Loading...' : 'Scrape Reviews'}
+          {loading ? "Loading..." : "Scrape Reviews"}
         </button>
       </form>
 
