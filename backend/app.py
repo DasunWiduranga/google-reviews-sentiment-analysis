@@ -22,6 +22,8 @@ def scrape():
         
         reviews = scrape_reviews(business_name_or_url)
 
+        print(reviews)
+
         if not reviews:
             return jsonify(error="No reviews found"), 404
 

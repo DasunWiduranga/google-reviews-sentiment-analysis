@@ -58,7 +58,7 @@ function App() {
         </button>
       </form>
 
-      {error && <p className="error-message">{error}</p>}
+      {error && <p className="error-message">Error: {error}</p>}
 
       {reviews.length > 0 && (
         <div className="reviews-container">
