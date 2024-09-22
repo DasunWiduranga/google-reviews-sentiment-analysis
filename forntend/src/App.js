@@ -19,9 +19,15 @@ function App() {
     setLoading(true);
 
     try {
+      // Log the input business name for debugging
+      console.log("Business Name Sent:", businessName);
+
       const response = await axios.post("http://localhost:5000/scrape", {
         businessName,
       });
+
+      // Log the API response for debugging
+      console.log("API Response:", response.data);
 
       if (response.data.reviews) {
         setReviews(response.data.reviews);
@@ -32,7 +38,7 @@ function App() {
       }
     } catch (err) {
       setError("Error fetching data. Please try again.");
-      console.error("Error fetching data:", err);
+      console.error("Error fetching data:", err); // Log the error
     }
 
     setLoading(false);
